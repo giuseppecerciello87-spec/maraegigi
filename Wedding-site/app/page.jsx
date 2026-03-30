@@ -1,5 +1,6 @@
 "use client";
-
+export const dynamic = "force-dynamic";
+const isBrowser = typeof window !== "undefined";
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
@@ -72,7 +73,7 @@ function MusicPlayer() {
 // 📸 GALLERIA INVITATI (FIX FIREBASE)
 function GuestGallery() {
   const [images, setImages] = useState([]);
-
+if (!isBrowser) return null;
   const firebaseConfig = {
     apiKey: "AIzaSy...",
     authDomain: "maraegigi-5892d.firebaseapp.com",
