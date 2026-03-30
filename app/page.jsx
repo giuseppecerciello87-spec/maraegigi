@@ -30,7 +30,7 @@ export default function WeddingSite() {
       </SectionCard>
 
       <Gallery />
-      <GuestGallery />
+  
 
       <section className="text-center px-6 py-16">
         <h2 className="text-3xl mb-4">RSVP</h2>
@@ -72,16 +72,7 @@ function MusicPlayer() {
 }
 
 // 📸 GALLERIA INVITATI (FIX FIREBASE)
-function GuestGallery() {
-  const [images, setImages] = useState([]);
-if (!isBrowser) return null;
-  const firebaseConfig = {
-    apiKey: "AIzaSy...",
-    authDomain: "maraegigi-5892d.firebaseapp.com",
-    projectId: "maraegigi-5892d",
-    storageBucket: "maraegigi-5892d.appspot.com",
-    appId: "1:811089717801:web:38069030e6e1c96ceaca38"
-  };
+
 
   const loadImages = async () => {
     const { initializeApp } = await import("firebase/app");
