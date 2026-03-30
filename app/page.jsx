@@ -1,10 +1,10 @@
 "use client";
 export const dynamic = "force-dynamic";
-const isBrowser = typeof window !== "undefined";
 
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
+// 🔹 COMPONENTE PRINCIPALE
 export default function WeddingSite() {
   return (
     <div className="min-h-screen bg-[#f6f1eb] text-[#3e342b] font-serif">
@@ -12,7 +12,11 @@ export default function WeddingSite() {
       <MusicPlayer />
 
       <section className="text-center py-24 px-6">
-        <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="text-6xl md:text-7xl font-semibold mb-4">
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-6xl md:text-7xl font-semibold mb-4"
+        >
           Mara & Gianluigi
         </motion.h1>
         <p className="text-xl italic">18 Giugno 2026</p>
@@ -30,7 +34,6 @@ export default function WeddingSite() {
       </SectionCard>
 
       <Gallery />
-  
 
       <section className="text-center px-6 py-16">
         <h2 className="text-3xl mb-4">RSVP</h2>
@@ -48,7 +51,7 @@ export default function WeddingSite() {
   );
 }
 
-// 🎵 PLAYER
+// 🔹 MUSIC PLAYER
 function MusicPlayer() {
   const audioRef = useRef(null);
   const [playing, setPlaying] = useState(false);
@@ -71,61 +74,7 @@ function MusicPlayer() {
   );
 }
 
-// 📸 GALLERIA INVITATI (FIX FIREBASE)
-
-
-  const loadImages = async () => {
-    const { initializeApp } = await import("firebase/app");
-    const { getStorage, ref, listAll, getDownloadURL } = await import("firebase/storage");
-
-    const app = initializeApp(firebaseConfig);
-    const storage = getStorage(app);
-
-    const listRef = ref(storage, "uploads/");
-    const res = await listAll(listRef);
-
-    const urls = await Promise.all(
-      res.items.map(item => getDownloadURL(item))
-    );
-
-    setImages(urls);
-  };
-
-  useEffect(() => {
-    loadImages();
-  }, []);
-
-  const upload = async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-
-    const { initializeApp } = await import("firebase/app");
-    const { getStorage, ref, uploadBytes, getDownloadURL } = await import("firebase/storage");
-
-    const app = initializeApp(firebaseConfig);
-    const storage = getStorage(app);
-
-    const storageRef = ref(storage, `uploads/${file.name}`);
-    await uploadBytes(storageRef, file);
-
-    const url = await getDownloadURL(storageRef);
-    setImages(prev => [...prev, url]);
-  };
-
-  return (
-    <section className="px-6 py-16 max-w-5xl mx-auto">
-      <h2 className="text-3xl text-center mb-6">Foto degli invitati</h2>
-      <input type="file" onChange={upload} className="mb-6" />
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-        {images.map((src, i) => (
-          <img key={i} src={src} className="rounded-2xl h-44 w-full object-cover" />
-        ))}
-      </div>
-    </section>
-  );
-}
-
-// 📷 GALLERIA BASE
+// 🔹 GALLERIA BASE
 function Gallery() {
   return (
     <section className="px-6 py-16 max-w-5xl mx-auto">
@@ -139,7 +88,7 @@ function Gallery() {
   );
 }
 
-// 🧾 CARD
+// 🔹 CARD
 function SectionCard({ title, children }) {
   return (
     <section className="px-6 py-8 max-w-4xl mx-auto">
@@ -151,7 +100,7 @@ function SectionCard({ title, children }) {
   );
 }
 
-// 🗺️ MAPPA
+// 🔹 MAP BUTTON
 function MapButton({ query }) {
   return (
     <div className="mt-4">
@@ -164,7 +113,7 @@ function MapButton({ query }) {
   );
 }
 
-// ⏳ COUNTDOWN
+// 🔹 COUNTDOWN
 function Countdown() {
   const weddingDate = new Date("2026-06-18T16:00:00");
   const now = new Date();
