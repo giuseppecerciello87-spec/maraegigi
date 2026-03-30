@@ -3,8 +3,12 @@ import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 // 🔥 Firebase
-import { initializeApp } from "firebase/app";
-import { getStorage, ref, uploadBytes, getDownloadURL, listAll } from "firebase/storage";
+const upload = async (file) => {
+  if (!file) return;
+
+  const { initializeApp } = await import("firebase/app");
+  const { getStorage, ref, uploadBytes, getDownloadURL } = await import("firebase/storage");
+
 
 // 👉 INSERISCI QUI I TUOI DATI FIREBASE
 const firebaseConfig = {
@@ -15,7 +19,8 @@ const firebaseConfig = {
   messagingSenderId: "811089717801",
   appId: "1:811089717801:web:38069030e6e1c96ceaca38"
 };
-
+  const app = initializeApp(firebaseConfig);
+  const storage = getStorage(app);
 let storage;
 
 if (typeof window !== "undefined") {
