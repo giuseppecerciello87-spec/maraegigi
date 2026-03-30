@@ -16,8 +16,12 @@ const firebaseConfig = {
   appId: "1:811089717801:web:38069030e6e1c96ceaca38"
 };
 
-const app = initializeApp(firebaseConfig);
-const storage = getStorage(app);
+let storage;
+
+if (typeof window !== "undefined") {
+  const app = initializeApp(firebaseConfig);
+  storage = getStorage(app);
+}
 
 export default function WeddingSite() {
   return (
