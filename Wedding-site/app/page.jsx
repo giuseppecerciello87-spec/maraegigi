@@ -1,6 +1,4 @@
 "use client"; // <--- obbligatorio per Client Component
-import { Card, CardContent } from "../../components/ui/card";
-import { Button } from "../../components/ui/button";
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
@@ -140,12 +138,9 @@ function GuestGallery() {
 function SectionCard({ title, content }) {
   return (
     <section className="px-6 py-8 max-w-4xl mx-auto">
-      <Card className="rounded-2xl shadow bg-white">
-        <CardContent className="p-6">
-          <h2 className="text-2xl mb-2">{title}</h2>
-          {content}
-        </CardContent>
-      </Card>
+<div className="bg-white rounded-2xl shadow p-6">
+  contenuto
+</div>
     </section>
   );
 }
