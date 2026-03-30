@@ -9,12 +9,12 @@ import { getStorage, ref, uploadBytes, getDownloadURL, listAll } from "firebase/
 
 // 👉 INSERISCI QUI I TUOI DATI FIREBASE
 const firebaseConfig = {
-  apiKey: "INSERISCI",
-  authDomain: "INSERISCI",
-  projectId: "INSERISCI",
-  storageBucket: "INSERISCI",
-  messagingSenderId: "INSERISCI",
-  appId: "INSERISCI"
+  apiKey: "AIzaSyBrs_73aL6-3pjUCoqYVrKEB4MuV8I4Czo",
+  authDomain: "maraegigi-5892d.firebaseapp.com",
+  projectId: "maraegigi-5892d",
+  storageBucket: "maraegigi-5892d.firebasestorage.app",
+  messagingSenderId: "811089717801",
+  appId: "1:811089717801:web:38069030e6e1c96ceaca38"
 };
 
 const app = initializeApp(firebaseConfig);
